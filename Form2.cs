@@ -13,7 +13,7 @@ namespace WindowsFormsApp2
 {
     public partial class Form2 : Form
     {
-        public string Path_toHighScores = @"C:\Users\Anna Fedorova\source\repos\OlexandrPozden\GameBall\score.txt";
+        public string Path_toHighScores = @"C:\Users\HP\source\repos\NewGameAnna\score.txt";
         private int highsc; //lower high score to get there
         Form3 form = new Form3();
         private int x;
@@ -115,16 +115,22 @@ namespace WindowsFormsApp2
                 }
                 else if (dialog == DialogResult.No)
                 {
+                    count = 0;
+                    time = 0;
                     textBox1.Text = "0";
                     label1.Text = "00:00";
                     ovalPictureBox1.Enabled = false;
                     Start.Enabled = true;
                     HighScores.Enabled = true;
                     Pause_Resume.Enabled = false;
-                    HighScores.BackColor = Color.White;
+                    HighScores.BackColor = Color.MintCream;
                     HighScores.ForeColor = Color.LightSlateGray;
                     splitter1.BackColor = Color.LightSlateGray;
-                    Start.BackColor = Color.LightSlateGray;
+                    Start.BackColor = Color.MintCream;
+                    Start.ForeColor = Color.LightSlateGray;
+                    Pause_Resume.BackColor = Color.LightSlateGray;
+                    Pause_Resume.ForeColor = Color.SlateGray;
+
                     //this.Hide();
                     //form.ShowDialog();
                 }
@@ -134,7 +140,7 @@ namespace WindowsFormsApp2
 
         private void HighScores_Click(object sender, EventArgs e)
         {
-            if (count != 0)
+            if (time != 0)
             {
                 DialogResult dialog = MessageBox.Show("Do you really want to leave this",
                 "All will be discard!", MessageBoxButtons.YesNo);
@@ -179,10 +185,10 @@ namespace WindowsFormsApp2
                 Pause_Resume.BackColor = Color.Wheat;
                 HighScores.Enabled = false;
                 HighScores.BackColor = Color.Silver;
-                HighScores.ForeColor = Color.Maroon;
+                
                 Start.Enabled = false;
                 Start.BackColor = Color.Silver;
-                Start.ForeColor = Color.Maroon;
+               
 
             }
         }

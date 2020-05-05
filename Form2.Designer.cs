@@ -54,9 +54,10 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 102;
-            this.dataGridView1.Size = new System.Drawing.Size(784, 561);
+            this.dataGridView1.Size = new System.Drawing.Size(2091, 1338);
             this.dataGridView1.TabIndex = 1;
             // 
             // textBox1
@@ -65,9 +66,10 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(26, 12);
+            this.textBox1.Location = new System.Drawing.Point(69, 29);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 73);
+            this.textBox1.Size = new System.Drawing.Size(267, 182);
             this.textBox1.TabIndex = 3;
             // 
             // splitter1
@@ -75,8 +77,9 @@
             this.splitter1.BackColor = System.Drawing.Color.SlateGray;
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(217, 561);
+            this.splitter1.Size = new System.Drawing.Size(575, 1338);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             // 
@@ -84,9 +87,10 @@
             // 
             this.ovalPictureBox1.BackColor = System.Drawing.Color.NavajoWhite;
             this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ovalPictureBox1.Location = new System.Drawing.Point(374, 148);
+            this.ovalPictureBox1.Location = new System.Drawing.Point(997, 353);
+            this.ovalPictureBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.ovalPictureBox1.Name = "ovalPictureBox1";
-            this.ovalPictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.ovalPictureBox1.Size = new System.Drawing.Size(267, 238);
             this.ovalPictureBox1.TabIndex = 2;
             this.ovalPictureBox1.TabStop = false;
             this.ovalPictureBox1.Click += new System.EventHandler(this.ovalPictureBox1_Click);
@@ -96,10 +100,10 @@
             this.HighScores.BackColor = System.Drawing.Color.MintCream;
             this.HighScores.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HighScores.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.HighScores.Location = new System.Drawing.Point(55, 148);
-            this.HighScores.Margin = new System.Windows.Forms.Padding(1);
+            this.HighScores.Location = new System.Drawing.Point(147, 353);
+            this.HighScores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HighScores.Name = "HighScores";
-            this.HighScores.Size = new System.Drawing.Size(97, 35);
+            this.HighScores.Size = new System.Drawing.Size(259, 83);
             this.HighScores.TabIndex = 5;
             this.HighScores.Text = "Highscores";
             this.HighScores.UseVisualStyleBackColor = false;
@@ -110,11 +114,11 @@
             this.Pause_Resume.BackColor = System.Drawing.Color.LightSlateGray;
             this.Pause_Resume.Enabled = false;
             this.Pause_Resume.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pause_Resume.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Pause_Resume.Location = new System.Drawing.Point(55, 201);
-            this.Pause_Resume.Margin = new System.Windows.Forms.Padding(1);
+            this.Pause_Resume.ForeColor = System.Drawing.Color.SlateGray;
+            this.Pause_Resume.Location = new System.Drawing.Point(147, 479);
+            this.Pause_Resume.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Pause_Resume.Name = "Pause_Resume";
-            this.Pause_Resume.Size = new System.Drawing.Size(97, 42);
+            this.Pause_Resume.Size = new System.Drawing.Size(259, 100);
             this.Pause_Resume.TabIndex = 6;
             this.Pause_Resume.Text = "Pause";
             this.Pause_Resume.UseVisualStyleBackColor = false;
@@ -122,13 +126,13 @@
             // 
             // Start
             // 
-            this.Start.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Start.BackColor = System.Drawing.Color.MintCream;
             this.Start.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Start.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Start.Location = new System.Drawing.Point(55, 245);
-            this.Start.Margin = new System.Windows.Forms.Padding(1);
+            this.Start.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.Start.Location = new System.Drawing.Point(147, 584);
+            this.Start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(97, 76);
+            this.Start.Size = new System.Drawing.Size(259, 181);
             this.Start.TabIndex = 7;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = false;
@@ -140,9 +144,10 @@
             this.label1.BackColor = System.Drawing.Color.SlateGray;
             this.label1.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(64, 366);
+            this.label1.Location = new System.Drawing.Point(171, 873);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 29);
+            this.label1.Size = new System.Drawing.Size(176, 74);
             this.label1.TabIndex = 8;
             this.label1.Text = "00:00";
             // 
@@ -152,9 +157,9 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(2091, 1338);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Pause_Resume);
@@ -163,6 +168,7 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.ovalPictureBox1);
             this.Controls.Add(this.dataGridView1);
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
