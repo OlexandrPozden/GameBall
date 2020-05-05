@@ -36,10 +36,6 @@ namespace WindowsFormsApp2
             sr.Close();
             return all;
         }
-        private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void BackToGame_Click(object sender, EventArgs e)
         {

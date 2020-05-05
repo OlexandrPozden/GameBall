@@ -21,6 +21,8 @@ namespace WindowsFormsApp2
         SolidBrush fon;
         Random rand;
         int count = 0;
+        int time = 0;
+        int gametime = 0;
         public Form2()
         {
             InitializeComponent();
@@ -28,6 +30,15 @@ namespace WindowsFormsApp2
             y = 50;
         }
 
+        private void StartGameTime()
+        {
+            timer2.Tick += delegate
+            {
+                time++;
+                var ssTime = TimeSpan.FromSeconds(time);
+                label1.Text = "00:" + time.ToString();
+            };
+        }
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -38,12 +49,13 @@ namespace WindowsFormsApp2
             y = rand.Next(98, dataGridView1.Height - 125);
             ovalPictureBox1.Location = new Point(x, y);
             timer1.Enabled = false;
+            timer2.Enabled = false;
             ovalPictureBox1.Enabled = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int x, y;
+            //int x, y;
             x = rand.Next(225, dataGridView1.Width - 125);
             y = rand.Next(98, dataGridView1.Height - 125);
             ovalPictureBox1.Location = new Point(x, y);
@@ -53,37 +65,40 @@ namespace WindowsFormsApp2
         {
             count++;
             textBox1.Text = Convert.ToString(count);
-           // Cursor.Position = new Point(350, 175);
+
+            //Cursor.Position = new Point(x+x1,y+y1);
             if (count == 1)
             {
                 ovalPictureBox1.BackColor = Color.RosyBrown;
-                timer1.Interval = 1000;
+                timer1.Interval = 500;
             }
             else if (count == 2)
             {
                 ovalPictureBox1.BackColor = Color.Khaki;
-                timer1.Interval = 950;
+                timer1.Interval = 475;
             }
             else if (count == 3)
             {
                 ovalPictureBox1.BackColor = Color.SteelBlue;
-                timer1.Interval = 900;
+                timer1.Interval = 450;
             }
             else if (count == 4)
             {
                 ovalPictureBox1.BackColor = Color.Plum;
-                timer1.Interval = 850;
+                timer1.Interval = 400;
             }
             else if (count == 5)
             {
                 ovalPictureBox1.BackColor = Color.Pink;
                 timer1.Stop();
+                timer2.Stop();
+                gametime = time;
                 this.sort_winners();
                 highsc = this.getLowerScoreForHighScores();
-                if (count > highsc)
+                if (gametime < highsc)
                 {
                     string name = Prompt.ShowDialog("Enter please your name", "New Record!");
-                    this.SetWinnerName(name, count);
+                    this.SetWinnerName(name, gametime);
                     
                 }
                 DialogResult dialog = MessageBox.Show("Do you want to play again?",
@@ -92,12 +107,24 @@ namespace WindowsFormsApp2
                 {
                     textBox1.Text = "0";
                     count = 0;
+                    time = 0;
+                    label1.Text = "00:00";
                     timer1.Start();
+                    timer2.Start();
 
                 }
                 else if (dialog == DialogResult.No)
                 {
                     textBox1.Text = "0";
+                    label1.Text = "00:00";
+                    ovalPictureBox1.Enabled = false;
+                    Start.Enabled = true;
+                    HighScores.Enabled = true;
+                    Pause_Resume.Enabled = false;
+                    HighScores.BackColor = Color.White;
+                    HighScores.ForeColor = Color.LightSlateGray;
+                    splitter1.BackColor = Color.LightSlateGray;
+                    Start.BackColor = Color.LightSlateGray;
                     //this.Hide();
                     //form.ShowDialog();
                 }
@@ -131,19 +158,21 @@ namespace WindowsFormsApp2
             if (timer1.Enabled == true)
             {
                 timer1.Enabled = false;
+                timer2.Enabled = false;
                 Pause_Resume.Text = "Resume";
                 ovalPictureBox1.Enabled = false;
-                splitter1.BackColor = Color.Wheat;
+                splitter1.BackColor = Color.LightSlateGray;
                 Pause_Resume.BackColor = Color.White;
                 HighScores.Enabled = true;
-                HighScores.BackColor = Color.White;
-                HighScores.ForeColor = Color.Black;
+                HighScores.BackColor = Color.LightSlateGray;
+                HighScores.ForeColor = Color.White;
                 Start.Enabled = true;
-                Start.BackColor = Color.LightGreen;
-                Start.ForeColor = Color.Black;
+                Start.BackColor = Color.LightSlateGray;
+                Start.ForeColor = Color.White;
             }
             else {
                 timer1.Enabled = true;
+                timer2.Enabled = true;
                 ovalPictureBox1.Enabled = true;
                 Pause_Resume.Text = "Pause";
                 splitter1.BackColor = Color.Gray;
@@ -169,6 +198,8 @@ namespace WindowsFormsApp2
                     count = 0;
                     textBox1.Text = "0";
                     this.Start_Click(sender, e);
+                    time = 0;
+                    StartGameTime();
                 }
 
             }
@@ -179,13 +210,16 @@ namespace WindowsFormsApp2
                 Pause_Resume.ForeColor = Color.Black;
                 HighScores.Enabled = false;
                 HighScores.BackColor = Color.Silver;
-                HighScores.ForeColor = Color.Maroon;
+                HighScores.ForeColor = Color.White;
                 splitter1.BackColor = Color.Gray;
                 Start.Enabled = false;
                 Start.BackColor = Color.Silver;
                 Start.ForeColor = Color.Maroon;
                 timer1.Enabled = true;
+                timer2.Enabled = true;
                 ovalPictureBox1.Enabled = true;
+                StartGameTime();
+                timer1.Tick += timer1_Tick;
             }
             
             
@@ -256,7 +290,7 @@ namespace WindowsFormsApp2
             sr.Close();
             for (int i = 0; i <5 ; i++) {
                 for (int j = 0; j < 4; j++) {
-                    if (Convert.ToInt32(winners[j, 1]) < Convert.ToInt32(winners[j + 1, 1])) {
+                    if (Convert.ToInt32(winners[j, 1]) > Convert.ToInt32(winners[j + 1, 1])) {
                         for (int k = 0; k < 2; k++) {
                             temp[k] = winners[j, k];
                             winners[j, k] = winners[j + 1, k];

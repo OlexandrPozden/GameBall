@@ -37,6 +37,8 @@
             this.HighScores = new System.Windows.Forms.Button();
             this.Pause_Resume = new System.Windows.Forms.Button();
             this.Start = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ovalPictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -52,10 +54,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 102;
-            this.dataGridView1.Size = new System.Drawing.Size(2133, 1073);
+            this.dataGridView1.Size = new System.Drawing.Size(784, 561);
             this.dataGridView1.TabIndex = 1;
             // 
             // textBox1
@@ -64,20 +65,18 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Location = new System.Drawing.Point(69, 29);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.textBox1.Location = new System.Drawing.Point(26, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(267, 182);
+            this.textBox1.Size = new System.Drawing.Size(100, 73);
             this.textBox1.TabIndex = 3;
             // 
             // splitter1
             // 
-            this.splitter1.BackColor = System.Drawing.Color.Wheat;
+            this.splitter1.BackColor = System.Drawing.Color.SlateGray;
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(575, 1073);
+            this.splitter1.Size = new System.Drawing.Size(217, 561);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
             // 
@@ -85,10 +84,9 @@
             // 
             this.ovalPictureBox1.BackColor = System.Drawing.Color.NavajoWhite;
             this.ovalPictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ovalPictureBox1.Location = new System.Drawing.Point(859, 103);
-            this.ovalPictureBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.ovalPictureBox1.Location = new System.Drawing.Point(374, 148);
             this.ovalPictureBox1.Name = "ovalPictureBox1";
-            this.ovalPictureBox1.Size = new System.Drawing.Size(267, 238);
+            this.ovalPictureBox1.Size = new System.Drawing.Size(100, 100);
             this.ovalPictureBox1.TabIndex = 2;
             this.ovalPictureBox1.TabStop = false;
             this.ovalPictureBox1.Click += new System.EventHandler(this.ovalPictureBox1_Click);
@@ -96,9 +94,12 @@
             // HighScores
             // 
             this.HighScores.BackColor = System.Drawing.Color.MintCream;
-            this.HighScores.Location = new System.Drawing.Point(147, 342);
+            this.HighScores.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HighScores.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.HighScores.Location = new System.Drawing.Point(55, 148);
+            this.HighScores.Margin = new System.Windows.Forms.Padding(1);
             this.HighScores.Name = "HighScores";
-            this.HighScores.Size = new System.Drawing.Size(231, 47);
+            this.HighScores.Size = new System.Drawing.Size(97, 35);
             this.HighScores.TabIndex = 5;
             this.HighScores.Text = "Highscores";
             this.HighScores.UseVisualStyleBackColor = false;
@@ -106,12 +107,14 @@
             // 
             // Pause_Resume
             // 
-            this.Pause_Resume.BackColor = System.Drawing.Color.Silver;
+            this.Pause_Resume.BackColor = System.Drawing.Color.LightSlateGray;
             this.Pause_Resume.Enabled = false;
-            this.Pause_Resume.ForeColor = System.Drawing.Color.Maroon;
-            this.Pause_Resume.Location = new System.Drawing.Point(147, 488);
+            this.Pause_Resume.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pause_Resume.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Pause_Resume.Location = new System.Drawing.Point(55, 201);
+            this.Pause_Resume.Margin = new System.Windows.Forms.Padding(1);
             this.Pause_Resume.Name = "Pause_Resume";
-            this.Pause_Resume.Size = new System.Drawing.Size(231, 90);
+            this.Pause_Resume.Size = new System.Drawing.Size(97, 42);
             this.Pause_Resume.TabIndex = 6;
             this.Pause_Resume.Text = "Pause";
             this.Pause_Resume.UseVisualStyleBackColor = false;
@@ -119,20 +122,40 @@
             // 
             // Start
             // 
-            this.Start.BackColor = System.Drawing.Color.SpringGreen;
-            this.Start.Location = new System.Drawing.Point(147, 599);
+            this.Start.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Start.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Start.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Start.Location = new System.Drawing.Point(55, 245);
+            this.Start.Margin = new System.Windows.Forms.Padding(1);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(231, 182);
+            this.Start.Size = new System.Drawing.Size(97, 76);
             this.Start.TabIndex = 7;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = false;
             this.Start.Click += new System.EventHandler(this.Start_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.SlateGray;
+            this.label1.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(64, 366);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 29);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "00:00";
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 1000;
+            // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2133, 1073);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Start);
             this.Controls.Add(this.Pause_Resume);
             this.Controls.Add(this.HighScores);
@@ -140,7 +163,6 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.ovalPictureBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
@@ -161,5 +183,7 @@
         private System.Windows.Forms.Button HighScores;
         private System.Windows.Forms.Button Pause_Resume;
         private System.Windows.Forms.Button Start;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
