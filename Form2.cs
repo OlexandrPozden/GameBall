@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApp2
 {
     public partial class Form2 : Form
     {
+        public string Path_toHighScores = @"C:\Users\HP\source\repos\NewGameAnna\score.txt";
+        private int highsc; //lower high score to get there
         Form3 form = new Form3();
         private int x;
         private int y;
@@ -34,8 +37,8 @@ namespace WindowsFormsApp2
             x = rand.Next(225, dataGridView1.Width - 125);
             y = rand.Next(98, dataGridView1.Height - 125);
             ovalPictureBox1.Location = new Point(x, y);
-            timer1.Enabled = true;
-
+            timer1.Enabled = false;
+            ovalPictureBox1.Enabled = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -50,7 +53,7 @@ namespace WindowsFormsApp2
         {
             count++;
             textBox1.Text = Convert.ToString(count);
-            Cursor.Position = new Point(350, 175);
+           // Cursor.Position = new Point(350, 175);
             if (count == 1)
             {
                 ovalPictureBox1.BackColor = Color.RosyBrown;
@@ -75,6 +78,14 @@ namespace WindowsFormsApp2
             {
                 ovalPictureBox1.BackColor = Color.Pink;
                 timer1.Stop();
+                this.sort_winners();
+                highsc = this.getLowerScoreForHighScores();
+                if (count > highsc)
+                {
+                    string name = Prompt.ShowDialog("Enter please your name", "New Record!");
+                    this.SetWinnerName(name, count);
+                    
+                }
                 DialogResult dialog = MessageBox.Show("Do you want to play again?",
                 "You win!", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes)
@@ -86,11 +97,208 @@ namespace WindowsFormsApp2
                 }
                 else if (dialog == DialogResult.No)
                 {
-                    this.Hide();
-                    form.ShowDialog();
+                    textBox1.Text = "0";
+                    //this.Hide();
+                    //form.ShowDialog();
                 }
 
             }
         }
+
+        private void HighScores_Click(object sender, EventArgs e)
+        {
+            if (count != 0)
+            {
+                DialogResult dialog = MessageBox.Show("Do you really want to leave this",
+                "All will be discard!", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    this.Hide();
+                    form.ShowDialog();
+
+                }
+
+            }
+            else
+            {
+                this.Hide();
+                form.ShowDialog();
+            }
+        }
+
+        private void Pause_Resume_Click(object sender, EventArgs e)
+        {
+            if (timer1.Enabled == true)
+            {
+                timer1.Enabled = false;
+                Pause_Resume.Text = "Resume";
+                ovalPictureBox1.Enabled = false;
+                splitter1.BackColor = Color.Wheat;
+                Pause_Resume.BackColor = Color.White;
+                HighScores.Enabled = true;
+                HighScores.BackColor = Color.White;
+                HighScores.ForeColor = Color.Black;
+                Start.Enabled = true;
+                Start.BackColor = Color.LightGreen;
+                Start.ForeColor = Color.Black;
+            }
+            else {
+                timer1.Enabled = true;
+                ovalPictureBox1.Enabled = true;
+                Pause_Resume.Text = "Pause";
+                splitter1.BackColor = Color.Gray;
+                Pause_Resume.BackColor = Color.Wheat;
+                HighScores.Enabled = false;
+                HighScores.BackColor = Color.Silver;
+                HighScores.ForeColor = Color.Maroon;
+                Start.Enabled = false;
+                Start.BackColor = Color.Silver;
+                Start.ForeColor = Color.Maroon;
+
+            }
+        }
+
+        private void Start_Click(object sender, EventArgs e)
+        {
+            if (count != 0)
+            {
+                DialogResult dialog = MessageBox.Show("Do you really want to start from 0 score?",
+                "All will be discard!", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    count = 0;
+                    textBox1.Text = "0";
+                    this.Start_Click(sender, e);
+                }
+
+            }
+            else
+            {
+                Pause_Resume.Enabled = true;
+                Pause_Resume.BackColor = Color.Wheat;
+                Pause_Resume.ForeColor = Color.Black;
+                HighScores.Enabled = false;
+                HighScores.BackColor = Color.Silver;
+                HighScores.ForeColor = Color.Maroon;
+                splitter1.BackColor = Color.Gray;
+                Start.Enabled = false;
+                Start.BackColor = Color.Silver;
+                Start.ForeColor = Color.Maroon;
+                timer1.Enabled = true;
+                ovalPictureBox1.Enabled = true;
+            }
+            
+            
+        }
+        private void SetWinnerName(String name, int score) {
+            String str = name + "$" + Convert.ToString(score);
+            StreamReader sr = new StreamReader(Path_toHighScores);
+            string[] temp = new string[2];
+            string[,] winners = new string[5, 2];
+            string line;
+
+            int counter = 0;
+            while ((line = sr.ReadLine()) != null)
+            {
+
+                temp = line.Split('$');
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    winners[counter, i] = temp[i];
+                }
+                counter++;
+            }
+            sr.Close();
+            using (StreamWriter sw = new StreamWriter(Path_toHighScores, false, System.Text.Encoding.Default))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    sw.WriteLine(winners[i, 0] + "$" + winners[i, 1]);
+                }
+            }
+            using (StreamWriter sw = new StreamWriter(Path_toHighScores, true, System.Text.Encoding.Default))
+            {
+                sw.WriteLine(str);
+            }
+            this.sort_winners();
+        }
+        private  int getLowerScoreForHighScores()
+        {
+            StreamReader sr = new StreamReader(Path_toHighScores);
+            string[] temp = new string[2];
+            string line;
+            int min_number = -1;
+            while ((line = sr.ReadLine()) != null)
+            {
+               
+                temp = line.Split('$');
+                min_number = Convert.ToInt32(temp[1]);
+            }
+            sr.Close();
+            return min_number;
+        }
+        private void sort_winners() {
+            StreamReader sr = new StreamReader(Path_toHighScores);
+            string[] temp = new string[2];
+            string[,] winners = new string[5,2];
+            string line;
+       
+            int counter = 0;
+            while ((line = sr.ReadLine()) != null)
+            {
+
+                temp = line.Split('$');
+                for (int i = 0; i < temp.Length; i++) {
+                    winners[counter, i] = temp[i];
+                }
+                counter++;
+            }
+            sr.Close();
+            for (int i = 0; i <5 ; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (Convert.ToInt32(winners[j, 1]) < Convert.ToInt32(winners[j + 1, 1])) {
+                        for (int k = 0; k < 2; k++) {
+                            temp[k] = winners[j, k];
+                            winners[j, k] = winners[j + 1, k];
+                            winners[j + 1, k] = temp[k];
+                        }
+                    }
+                }
+            }
+           
+            using (StreamWriter sw = new StreamWriter(Path_toHighScores, false, System.Text.Encoding.Default))
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    sw.WriteLine(winners[i,0]+"$"+winners[i,1]);
+                }
+            }
+           
+
+        }
+    }
+}
+public static class Prompt
+{
+    public static string ShowDialog(string text, string caption)
+    {
+        Form prompt = new Form()
+        {
+            Width = 500,
+            Height = 150,
+            FormBorderStyle = FormBorderStyle.FixedDialog,
+            Text = caption,
+            StartPosition = FormStartPosition.CenterScreen
+        };
+        Label textLabel = new Label() { Left = 50, Top = 20, Width = 300, Text = text };
+        TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+        Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+        confirmation.Click += (sender, e) => { prompt.Close(); };
+        prompt.Controls.Add(textBox);
+        prompt.Controls.Add(confirmation);
+        prompt.Controls.Add(textLabel);
+        prompt.AcceptButton = confirmation;
+
+        return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
     }
 }

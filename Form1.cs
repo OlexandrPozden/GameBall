@@ -24,5 +24,10 @@ namespace WindowsFormsApp2
             this.Hide();
             f.ShowDialog();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
