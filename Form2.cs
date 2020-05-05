@@ -13,7 +13,7 @@ namespace WindowsFormsApp2
 {
     public partial class Form2 : Form
     {
-        public string Path_toHighScores = @"C:\Users\HP\source\repos\NewGameAnna\score.txt";
+        public string Path_toHighScores = @"C:\Users\Anna Fedorova\source\repos\OlexandrPozden\GameBall\score.txt";
         private int highsc; //lower high score to get there
         Form3 form = new Form3();
         private int x;
